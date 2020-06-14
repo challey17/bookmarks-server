@@ -5,6 +5,7 @@ const logger = require("../logger");
 const bookmarksRouter = express.Router();
 const bodyParser = express.json();
 
+//example bookmarks
 const bookmarks = [
   {
     id: 1,
@@ -52,7 +53,7 @@ bookmarksRouter
     const { id } = req.params;
     const bookmark = bookmarks.find((b) => b.id == id);
 
-    // make sure we found a card
+    // make sure there is a bookmark
     if (!bookmark) {
       logger.error(`Bookmark with id ${id} not found.`);
       return res.status(404).send("Bookmark Not Found");
@@ -69,7 +70,7 @@ bookmarksRouter
       logger.error(`Bookmark with id ${id} not found.`);
       return res.status(404).send("Bookmark not found");
     }
-    //solice removes bookmark from array. 2nd pramater is how many items
+    //splice removes bookmark from array. 2nd pramater is how many items
     //will be deleted  (1 item)
     bookmarks.splice(bookmarkIndex, 1);
 
