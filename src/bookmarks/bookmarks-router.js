@@ -10,10 +10,16 @@ const bookmarks = [
   {
     id: 1,
     title: "bookmark 1",
+    url: "https://wwww.facebook.com",
+    description: "description one",
+    rating: "2",
   },
   {
     id: 2,
     title: "bookmark2",
+    url: "https://google.com",
+    decription: "bla bala",
+    rating: 3,
   },
 ];
 
@@ -23,10 +29,32 @@ bookmarksRouter
     res.json(bookmarks);
   })
   .post(bodyParser, (req, res) => {
-    const { title } = req.body;
+    const { title, url, description, rating } = req.body;
     if (!title) {
       logger.error("Title is required");
-      return res.status(400).send("Invalid data,bookmark title required");
+      return res.status(400).send("Invalid data, bookmark title required");
+    }
+
+    if (
+      !url ||
+      (!url.startsWith("http://www.") && !url.startsWith("https://www."))
+    ) {
+      logger.error("A url is required");
+      return res.status(400).send("Invalid data, bookmark url required");
+    }
+
+    if (!description) {
+      logger.error("description is required");
+      return res
+        .status(400)
+        .send("Invalid data, bookmark description required");
+    }
+
+    if (!rating || rating > 5 || rating < 0) {
+      logger.error("Rating is required");
+      return res
+        .status(400)
+        .send("Invalid data, a bookmark rating from 0-5 is required");
     }
 
     // get an id
@@ -35,6 +63,9 @@ bookmarksRouter
     const bookmark = {
       id,
       title,
+      url,
+      description,
+      rating,
     };
 
     bookmarks.push(bookmark);
