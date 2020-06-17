@@ -50,7 +50,7 @@ bookmarksRouter
         .send("Invalid data, bookmark description required");
     }
 
-    if (!rating || rating > 5 || rating < 0) {
+    if (!Number.isInteger(rating) || rating > 5 || rating < 0) {
       logger.error("Rating is required");
       return res
         .status(400)
