@@ -14,5 +14,6 @@ create table bookmarks (
 -- Using a multi-row insert statement here
 insert into bookmarks (id, title, url , description, rating)
 values
-  (1, 'Google', 'https://www.google.com', 'google search', 5)
+  (1, 'Google', 'https://www.google.com', 'google search', 5),
+  (2, 'thinkful', 'https://www.thinkful.com', 'school', 5)
   ;
