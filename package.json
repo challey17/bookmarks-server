@@ -23,6 +23,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
     "uuid": "^8.1.0",
+    "valid-url": "^1.0.9",
     "winston": "^3.2.1"
   },
   "devDependencies": {
